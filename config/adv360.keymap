@@ -1,9 +1,7 @@
 #include <dt-bindings/zmk/stp.h>
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/backlight.h>
-#include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/rgb.h>
 
 / {
     behaviors {
@@ -33,36 +31,24 @@
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer {
+        Base {
             display-name = "Base";
             bindings = <
-&kp GRAVE  &kp N1                                &kp N2            &kp N3        &kp N4            &kp N5  &tog 1                                                         &mo 2              &kp N6  &kp N7  &kp N8     &kp N9    &kp N0    &kp BACKSPACE
-&kp TAB    &kp Q                                 &kp W             &kp E         &kp R             &kp T   &kp MINUS                                                      &kp EQUAL          &kp Y   &kp U   &kp I      &kp O     &kp P     &kp BSLH
-&kp CAPS   &kp A                                 &kp S             &kp D         &kp F             &kp G   &kp LEFT_BRACKET  &kp A          &kp A      &kp A  &kp ESCAPE  &kp RIGHT_BRACKET  &kp H   &kp J   &kp K      &kp L     &kp SEMI  &kp SQT
-&kp LSHFT  &kp Z                                 &kp X             &kp C         &kp V             &kp B                                    &kp A      &kp A                                 &kp N   &kp M   &kp COMMA  &kp DOT   &kp UP    &kp ENTER
-&kp ENTER  &kp C_AC_NEXT_KEYBOARD_LAYOUT_SELECT  &kp LEFT_CONTROL  &kp LEFT_ALT  &kp LEFT_COMMAND          &kp LEFT_SHIFT    &kp BACKSPACE  &kp A      &kp A  &kp A       &kp SPACE                  &arrow  &kp SLASH  &kp LEFT  &kp DOWN  &kp RIGHT
+&kp GRAVE  &kp N1                                &kp N2            &kp N3        &kp N4            &kp N5  &none                                                                    &none              &kp N6  &kp N7             &kp N8     &kp N9    &kp N0    &kp BACKSPACE
+&kp TAB    &kp Q                                 &kp W             &kp E         &kp R             &kp T   &kp MINUS                                                                &kp EQUAL          &kp Y   &kp U              &kp I      &kp O     &kp P     &kp BSLH
+&kp CAPS   &kp A                                 &kp S             &kp D         &kp F             &kp G   &kp LEFT_BRACKET  &tog 1         &kp C_VOLUME_UP      &none  &kp ESCAPE  &kp RIGHT_BRACKET  &kp H   &kp J              &kp K      &kp L     &kp SEMI  &kp SQT
+&kp LSHFT  &kp Z                                 &kp X             &kp C         &kp V             &kp B                                    &kp C_VOL_DN         &none                                 &kp N   &kp M              &kp COMMA  &kp DOT   &kp UP    &kp ENTER
+&kp ENTER  &kp C_AC_NEXT_KEYBOARD_LAYOUT_SELECT  &kp LEFT_CONTROL  &kp LEFT_ALT  &kp LEFT_COMMAND          &kp LEFT_SHIFT    &kp BACKSPACE  &bl BL_TOG           &none  &arrow      &kp SPACE                  &kp RIGHT_COMMAND  &kp SLASH  &kp LEFT  &kp DOWN  &kp RIGHT
             >;
         };
 
-        keypad {
-            display-name = "Kp";
+        Number {
             bindings = <
-&kp EQUAL  &kp N1     &kp N2    &kp N3    &kp N4     &kp N5  &trans                                                   &mo 2      &kp N6  &kp KP_NUM  &kp KP_EQUAL  &kp KP_DIVIDE  &kp KP_MULTIPLY  &kp MINUS
-&kp TAB    &kp Q      &kp W     &kp E     &kp R      &kp T   &none                                                    &none      &kp Y   &kp KP_N7   &kp KP_N8     &kp KP_N9      &kp KP_MINUS     &kp BSLH
-&kp ESC    &kp A      &kp S     &kp D     &kp F      &kp G   &none     &kp LCTRL  &kp LALT      &kp LGUI   &kp RCTRL  &none      &kp H   &kp KP_N4   &kp KP_N5     &kp KP_N6      &kp KP_PLUS      &kp SQT
-&kp LSHFT  &kp Z      &kp X     &kp C     &kp V      &kp B                        &kp HOME      &kp PG_UP                        &kp N   &kp KP_N1   &kp KP_N2     &kp KP_N3      &kp KP_ENTER     &kp RSHFT
-&mo 0      &kp GRAVE  &kp CAPS  &kp LEFT  &kp RIGHT          &kp BSPC  &kp DEL    &kp END       &kp PG_DN  &kp ENTER  &kp KP_N0          &kp UP      &kp DOWN      &kp KP_DOT     &kp RBKT         &mo 0
-            >;
-        };
-
-        mod {
-            display-name = "Mod";
-            bindings = <
-&none           &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &none                                                  &trans           &none  &none       &none       &none  &none  &none
-&none           &none         &none         &none         &none         &none         &bootloader                                            &bootloader      &none  &none       &none       &none  &none  &none
-&studio_unlock  &none         &none         &none         &none         &none         &none        &none  &none      &bt BT_CLR  &none       &stp STP_BAT     &none  &none       &none       &none  &none  &none
-&none           &none         &none         &none         &macro_ver    &none                             &none      &none                                    &none  &none       &none       &none  &none  &none
-&none           &none         &none         &none         &none                       &none        &none  &none      &none       &bl BL_TOG  &rgb_ug RGB_TOG         &bl BL_INC  &bl BL_DEC  &none  &none  &none
+&none  &none  &none  &none  &none  &none  &none                                  &none  &none  &none   &none   &none   &none  &none
+&none  &none  &none  &none  &none  &none  &none                                  &none  &none  &kp N7  &kp N8  &kp N9  &none  &none
+&none  &none  &none  &none  &none  &none  &none  &none  &none      &none  &none  &none  &none  &kp N4  &kp N5  &kp N6  &none  &none
+&none  &none  &none  &none  &none  &none                &none      &none                &none  &kp N1  &kp N2  &kp N3  &none  &none
+&none  &none  &none  &none  &none         &none  &none  &none      &none  &none  &none         &none   &kp N0  &none   &none  &none
             >;
         };
     };
